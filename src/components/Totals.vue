@@ -1,0 +1,46 @@
+<template>
+  <div class="budget">
+    <div class="budget__title">
+      Available Budget in <span class="budget__title--month">{{ getDate }}</span>:
+    </div>
+                
+    <div class="budget__value">{{ total }}</div>
+
+    <BudgetTotals type="inc" />
+    <BudgetTotals type="exp" />
+  </div>
+</template>
+
+<script>
+import BudgetTotals from '@/components/BudgetTotals.vue';
+
+export default {
+  name: 'Totals',
+  components: {
+    BudgetTotals
+  },
+  data() {
+    return {
+      total: 0
+    }
+  },
+  computed: {
+    getDate: function() {
+      var now, year, month, months;
+            
+      months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
+      
+      now = new Date();
+
+      year = now.getFullYear();
+      month = months[now.getMonth()];
+
+      return month + ' ' + year;
+    }  
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+</style>
