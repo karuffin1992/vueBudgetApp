@@ -28,4 +28,47 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.budget__income,
+.budget__expenses {
+  padding: 12px;
+  text-transform: uppercase;
+}
+
+.budget__income {
+  margin-bottom: 10px;
+  background-color: $cyan;
+}
+
+.budget__expenses {
+    background-color: $red;
+}
+
+.budget__income--text,
+.budget__expenses--text {
+  float: left;
+  font-size: 13px;
+  color: $darkGrey;
+  margin-top: 2px;
+}
+
+.budget__income--value,
+.budget__expenses--value {
+  letter-spacing: 1px;
+  float: left;
+}
+
+.budget__income--percentage,
+.budget__expenses--percentage {
+  float: left;
+  width: 34px;
+  font-size: 11px;
+  padding: 3px 0;
+  margin-left: 10px;
+}
+
+.budget__expenses--percentage {
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  border-radius: 3px;
+}
 </style>
