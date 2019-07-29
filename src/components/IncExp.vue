@@ -1,32 +1,35 @@
 <template>
-  <div class="container clearfix">
-    <div class="expenses">
-      <h2 class="expenses__title">Expenses</h2>
-      <div class="expenses__list">
-        <IncExpRows type="exp" />
-      </div>
+  <div v-if="type === 'inc'" class="income">
+    <h2 class="income__title">Income</h2>
+    <div class="income__list">
+      <IncExpRows type="inc" />
     </div>
+  </div>
+
+  <div v-else class="expenses">
+    <h2 class="expenses__title">Expenses</h2>
+    <div class="expenses__list">
+      <IncExpRows type="exp" />
+    </div>     
   </div>
 </template>
 
 <script>
-import IncExpRows from '@/components/IncExpRows.vue';
+import IncExpRows from '@/components/IncExpRows.vue'
 
 export default {
   name: 'IncExp',
   components: {
     IncExpRows
+  },
+  props: {
+    type: String
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.container {
-  width: 1000px;
-  margin: 60px auto;
-}
-
 .income {
   float: left;
   width: 475px;

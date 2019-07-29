@@ -4,7 +4,7 @@
       Available Budget in <span class="budget__title--month">{{ getDate }}</span>:
     </div>
                 
-    <div class="budget__value">{{ total }}</div>
+    <div class="budget__value"></div>
 
     <BudgetTotals type="inc" />
     <BudgetTotals type="exp" />
@@ -12,21 +12,16 @@
 </template>
 
 <script>
-import BudgetTotals from '@/components/BudgetTotals.vue';
+import BudgetTotals from '@/components/BudgetTotals.vue'
 
 export default {
   name: 'Totals',
   components: {
     BudgetTotals
   },
-  data() {
-    return {
-      total: 0
-    }
-  },
   computed: {
     getDate: function() {
-      var now, year, month, months;
+      let now, year, month, months;
             
       months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
       
@@ -36,7 +31,7 @@ export default {
       month = months[now.getMonth()];
 
       return month + ' ' + year;
-    }  
+    } 
   }
 }
 </script>

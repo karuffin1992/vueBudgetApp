@@ -5,16 +5,18 @@
     </div>
     <div class="bottom">
       <Inputs />
-      <IncExp type="inc"/>
-      <IncExp type="exp"/>
+      <div class="container clearfix">
+        <IncExp type="inc"/>
+        <IncExp type="exp"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Totals from './components/Totals.vue'
-import Inputs from './components/Inputs.vue'
-import IncExp from './components/IncExp.vue'
+import Totals from '@/components/Totals.vue'
+import Inputs from '@/components/Inputs.vue'
+import IncExp from '@/components/IncExp.vue'
 
 export default {
   name: 'app',
@@ -22,6 +24,20 @@ export default {
     Totals,
     Inputs,
     IncExp
+  },
+  data() {
+    return {
+      allItems: {
+        exp: [],
+        inc: []
+      },
+      totals: {
+        exp: 0,
+        inc: 0
+      },
+      budget: 0,
+      percentage: -1
+    }
   }
 }
 </script>
@@ -66,5 +82,10 @@ body {
   background-size: cover;
   background-position: center;
   position: relative;
+}
+
+.container {
+  width: 1000px;
+  margin: 60px auto;
 }
 </style>

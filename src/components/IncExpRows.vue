@@ -1,9 +1,9 @@
 <template>
-  <div class="item clearfix" id="expense-0">
+  <div class="item clearfix">
     <div class="item__description"></div>
     <div class="right clearfix">
       <div class="item__value"></div>
-      <div class="item__percentage"></div>
+      <div v-if="type === 'exp'" class="item__percentage"></div>
       <div class="item__delete">
         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
       </div>
@@ -13,7 +13,10 @@
 
 <script>
 export default {
-  name: 'IncExpRows'
+  name: 'IncExpRows',
+  props: {
+    type: String
+  }
 }
 </script>
 
