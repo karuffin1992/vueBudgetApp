@@ -1,4 +1,4 @@
-class Expenses {
+export default class Expenses {
     constructor (id, description, value, percentage = -1) {
         this.id = id,
         this.description = description,

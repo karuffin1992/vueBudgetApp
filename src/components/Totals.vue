@@ -4,8 +4,8 @@
       Available Budget in <span class="budget__title--month">{{ getDate }}</span>:
     </div>
     <div class="budget__value"></div>
-    <BudgetTotals type="inc" :bind="incTotal"/>
-    <BudgetTotals type="exp" :bind="expTotal"/>
+    <BudgetTotals rowType="inc" :total="incTotal"/>
+    <BudgetTotals rowType="exp" :total="expTotal" :percentage="percentage"/>
   </div>
 </template>
 
@@ -17,7 +17,11 @@ export default {
   components: {
     BudgetTotals
   },
-  props: ['expTotal','incTotal'],
+  props: {
+    expTotal: Number,
+    incTotal: Number,
+    percentage: Number
+  },
   computed: {
     getDate: function () {
       let now, year, month, months

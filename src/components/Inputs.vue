@@ -2,7 +2,7 @@
   <div class="add">
     <div class="add__container">
       <select v-model="ddType" class="add__type">
-        <option value="inc" selected>+</option>
+        <option value="inc">+</option>
         <option value="exp">-</option>
       </select>
       <input v-model="description" type="text" class="add__description" placeholder="Add description">
@@ -18,12 +18,14 @@ import Expenses from '@/classes/Expenses.js'
 
 export default {
   name: 'Inputs',
-  props: [
-    'expItems',
-    'incItems',
-    'nextExpID',
-    'nextIncID'
-  ],
+  props: {
+    allItems: {
+      exp: Array,
+      nextExpID: Number,
+      inc: Array,
+      nextIncID: Number
+    }
+  },
   data () {
     return {
       ddType: 'inc',
@@ -32,27 +34,33 @@ export default {
     }
   },
   methods: {
-    addItem: function(event) {
-      console.log(`add item`)
-      let id, newItem, items, nextID
-      
-      const val = this.value
+    addItem: function (event) {
+      const val = parseInt(this.value)
       const desc = this.description
       const type = this.ddType
-      
+      const items = this.allItems
+
+      let newItem, nextID
+
       if (type === 'exp') {
-        items = this.expItems
-        nextID = this.nextExpID
-        newItem = new Expense(nextID, desc, val)
+        nextID = items.nextExpID
+        newItem = new Expenses(nextID, desc, val)
       } else {
-        item = this.incItems
-        nextID = this.nextIncID
+        nextID = items.nextIncID
         newItem = new Income(nextID, desc, val)
       }
 
       if (desc !== '' && val !== '') {
-        items.push(newItem)
+        items[type].push(newItem)
+        type === 'exp' ? items.nextExpID++ : items.nextIncID++
       }
+
+      this.clearFields()
+      this.$emit('interface', this.allItems)
+    },
+    clearFields: function () {
+      this.value = ''
+      this.description = ''
     }
   }
 }

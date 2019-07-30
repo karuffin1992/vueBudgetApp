@@ -2,20 +2,19 @@
   <div id="app">
     <div class="top">
       <Totals
-        :bind:expTotal="totals['exp']"
-        :bind:incTotal="totals['inc']"
+        :expTotal="totals['exp']"
+        :incTotal="totals['inc']"
+        :percentage="percentage"
       />
     </div>
     <div class="bottom">
       <Inputs
-        :bind:expItems="allItems['exp']"
-        :bind:nextExpID="allItems['nextExpID']"
-        :bind:incItems="allItems['inc']"
-        :bind:nextIncID="allItems['nextIncID']"
+        :allItems="allItems"
+        @interface="addItem"
       />
       <div class="container clearfix">
-        <IncExp type="inc"/>
-        <IncExp type="exp"/>
+        <IncExp rowType="inc" :items="allItems['inc']"/>
+        <IncExp rowType="exp" :items="allItems['exp']"/>
       </div>
     </div>
   </div>
@@ -46,7 +45,36 @@ export default {
         inc: 0
       },
       budget: 0,
-      percentage: -1
+      percentage: 0
+    }
+  },
+  methods: {
+    addItem: function (event) {
+      console.log('data return after event', event)
+      this.getTotals()
+    },
+    getTotals: function () {
+      // calculate total income and expenses
+      this.calcTotals('exp')
+      this.calcTotals('inc')
+
+      // calculate budget: income - expenses
+      let inc = this.totals['inc']
+      let exp = this.totals['exp']
+
+      this.budget = inc - exp
+
+      // calculate the percentage of income spent
+      this.percentage = this.totals.inc > 0 ? Math.round((exp / inc) * 100) : 0
+    },
+    calcTotals: function (type) {
+      let sum = 0
+
+      this.allItems[type].forEach(function (curr, i, array) {
+        sum += curr.value
+      })
+
+      this.totals[type] = sum
     }
   }
 }

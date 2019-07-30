@@ -1,20 +1,19 @@
 <template>
   <div>
-    <div v-if="type === 'inc'">
+    <div v-if="rowType === 'inc'">
       <div class="budget__income clearfix">
         <div class="budget__income--text">Income</div>
         <div class="right">
-          <div class="budget__income--value"></div>
-          <div class="budget__income--percentage"></div>
+          <div class="budget__income--value">{{ total }}</div>
         </div>
       </div>
     </div>
-    <div v-else>  
+    <div v-else>
       <div class="budget__expenses clearfix">
         <div class="budget__expenses--text">Expenses</div>
         <div class="right clearfix">
-          <div class="budget__expenses--value"></div>
-          <div class="budget__expenses--percentage"></div>
+          <div class="budget__expenses--value">{{ total }}</div>
+          <div class="budget__expenses--percentage">{{ percentage }} %</div>
         </div>
       </div>
     </div>
@@ -25,7 +24,9 @@
 export default {
   name: 'BudgetTotals',
   props: {
-    type: String    
+    total: Number,
+    percentage: Number,
+    rowType: String
   }
 }
 </script>

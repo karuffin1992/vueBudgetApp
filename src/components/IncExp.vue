@@ -1,16 +1,26 @@
 <template>
-  <div v-if="type === 'inc'" class="income">
+  <div v-if="rowType === 'inc'" class="income">
     <h2 class="income__title">Income</h2>
     <div class="income__list">
-      <IncExpRows type="inc" />
+      <IncExpRows v-for="item in items"
+        v-bind:key="item.id"
+        v-bind:value="item.value"
+        v-bind:description="item.description"
+        v-bind:rowType="rowType"
+      />
     </div>
   </div>
 
   <div v-else class="expenses">
     <h2 class="expenses__title">Expenses</h2>
     <div class="expenses__list">
-      <IncExpRows type="exp" />
-    </div>     
+      <IncExpRows v-for="item in items"
+        v-bind:key="item.id"
+        v-bind:value="item.value"
+        v-bind:description="item.description"
+        v-bind:rowType="rowType"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,7 +33,8 @@ export default {
     IncExpRows
   },
   props: {
-    type: String
+    items: Array,
+    rowType: String
   }
 }
 </script>

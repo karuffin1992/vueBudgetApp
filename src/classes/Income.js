@@ -1,4 +1,4 @@
-class Income {
+export default class Income {
     constructor (id, description, value) {
         this.id = id,
         this.description = description,
