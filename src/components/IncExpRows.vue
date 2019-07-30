@@ -56,7 +56,7 @@ export default {
   text-align: center;
 }
 
-.income .item__value, 
+.income .item__value,
 .income .item__delete--btn {
   color: $cyan;
 }

@@ -1,10 +1,18 @@
 <template>
   <div id="app">
     <div class="top">
-      <Totals />
+      <Totals
+        :bind:expTotal="totals['exp']"
+        :bind:incTotal="totals['inc']"
+      />
     </div>
     <div class="bottom">
-      <Inputs />
+      <Inputs
+        :bind:expItems="allItems['exp']"
+        :bind:nextExpID="allItems['nextExpID']"
+        :bind:incItems="allItems['inc']"
+        :bind:nextIncID="allItems['nextIncID']"
+      />
       <div class="container clearfix">
         <IncExp type="inc"/>
         <IncExp type="exp"/>
@@ -25,11 +33,13 @@ export default {
     Inputs,
     IncExp
   },
-  data() {
+  data () {
     return {
       allItems: {
         exp: [],
-        inc: []
+        nextExpID: 0,
+        inc: [],
+        nextIncID: 0
       },
       totals: {
         exp: 0,

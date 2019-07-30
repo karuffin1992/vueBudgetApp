@@ -1,20 +1,60 @@
 <template>
   <div class="add">
     <div class="add__container">
-      <select class="add__type">
+      <select v-model="ddType" class="add__type">
         <option value="inc" selected>+</option>
         <option value="exp">-</option>
       </select>
-      <input type="text" class="add__description" placeholder="Add description">
-      <input type="number" class="add__value" placeholder="Value">
-      <button class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
+      <input v-model="description" type="text" class="add__description" placeholder="Add description">
+      <input v-model="value" type="number" class="add__value" placeholder="Value">
+      <button @click="addItem" class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
     </div>
   </div>
 </template>
 
 <script>
+import Income from '@/classes/Income.js'
+import Expenses from '@/classes/Expenses.js'
+
 export default {
-  name: 'Inputs'
+  name: 'Inputs',
+  props: [
+    'expItems',
+    'incItems',
+    'nextExpID',
+    'nextIncID'
+  ],
+  data () {
+    return {
+      ddType: 'inc',
+      description: '',
+      value: ''
+    }
+  },
+  methods: {
+    addItem: function(event) {
+      console.log(`add item`)
+      let id, newItem, items, nextID
+      
+      const val = this.value
+      const desc = this.description
+      const type = this.ddType
+      
+      if (type === 'exp') {
+        items = this.expItems
+        nextID = this.nextExpID
+        newItem = new Expense(nextID, desc, val)
+      } else {
+        item = this.incItems
+        nextID = this.nextIncID
+        newItem = new Income(nextID, desc, val)
+      }
+
+      if (desc !== '' && val !== '') {
+        items.push(newItem)
+      }
+    }
+  }
 }
 </script>
 

@@ -3,11 +3,9 @@
     <div class="budget__title">
       Available Budget in <span class="budget__title--month">{{ getDate }}</span>:
     </div>
-                
     <div class="budget__value"></div>
-
-    <BudgetTotals type="inc" />
-    <BudgetTotals type="exp" />
+    <BudgetTotals type="inc" :bind="incTotal"/>
+    <BudgetTotals type="exp" :bind="expTotal"/>
   </div>
 </template>
 
@@ -19,19 +17,17 @@ export default {
   components: {
     BudgetTotals
   },
+  props: ['expTotal','incTotal'],
   computed: {
-    getDate: function() {
-      let now, year, month, months;
-            
-      months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
-      
-      now = new Date();
+    getDate: function () {
+      let now, year, month, months
+      months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      now = new Date()
+      year = now.getFullYear()
+      month = months[now.getMonth()]
 
-      year = now.getFullYear();
-      month = months[now.getMonth()];
-
-      return month + ' ' + year;
-    } 
+      return month + ' ' + year
+    }
   }
 }
 </script>
