@@ -5,7 +5,7 @@
       <IncExpRows v-for="item in items"
         :key="item.id"
         :value="item.value"
-        :description="item.description"        
+        :description="item.description"
         :rowType="rowType"
       />
     </div>

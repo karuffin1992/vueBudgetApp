@@ -14,7 +14,7 @@
         <div class="budget__expenses--text">Expenses</div>
         <div class="right clearfix">
           <div class="budget__expenses--value">{{ formatNumber(total, rowType) }}</div>
-          <div class="budget__expenses--percentage">{{ getPercentage }}</div>
+          <div class="budget__expenses--percentage">{{ getPercentage(percentage) }}</div>
         </div>
       </div>
     </div>
@@ -23,20 +23,15 @@
 
 <script>
 import formatNum from '@/mixins/formatNumber'
+import getPerc from '@/mixins/getPercentage'
 
 export default {
   name: 'BudgetTotals',
-  mixins: [ formatNum ],
+  mixins: [ formatNum, getPerc ],
   props: {
     total: Number,
     percentage: Number,
     rowType: String
-  },
-  computed: {
-    getPercentage: function () {
-      let percString = this.percentage > 0 ? this.percentage.toString() + '%' : '---'
-      return percString
-    }
   }
 }
 </script>
