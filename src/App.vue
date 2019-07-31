@@ -5,6 +5,7 @@
         :expTotal="totals['exp']"
         :incTotal="totals['inc']"
         :percentage="percentage"
+        :budget="budget"
       />
     </div>
     <div class="bottom">
@@ -50,7 +51,6 @@ export default {
   },
   methods: {
     addItem: function (event) {
-      console.log('data return after event', event)
       this.getTotals()
     },
     getTotals: function () {

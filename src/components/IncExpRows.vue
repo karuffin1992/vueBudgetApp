@@ -2,8 +2,8 @@
   <div class="item clearfix">
     <div class="item__description">{{ description }}</div>
     <div class="right clearfix">
-      <div class="item__value">{{ value }}</div>
-      <div v-if="type === 'exp'" class="item__percentage"></div>
+      <div class="item__value">{{ formatNumber(value, rowType) }}</div>
+      <div v-if="rowType === 'exp'" class="item__percentage"></div>
       <div class="item__delete">
         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
       </div>
@@ -12,12 +12,15 @@
 </template>
 
 <script>
+import formatNum from '@/mixins/formatNumber'
+
 export default {
   name: 'IncExpRows',
+  mixins: [ formatNum ],  
   props: {
     value: Number,
     description: String,
-    type: String
+    rowType: String
   }
 }
 </script>
