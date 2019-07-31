@@ -7,7 +7,7 @@ export default class Expenses {
     }
 
     calcPerc (totalInc) {
-        this.percentage = totalInc > 0 ? this.percentage = Math.round((this.value / totalInc) * 100) : this.percentage = -1        
+        this.percentage = totalInc > 0 ? Math.round((this.value / totalInc) * 100) : 0        
     }
 
     get getPerc () {

@@ -52,6 +52,7 @@ export default {
   methods: {
     addItem: function (event) {
       this.getTotals()
+      this.calcPercentages()
     },
     getTotals: function () {
       // calculate total income and expenses
@@ -75,6 +76,12 @@ export default {
       })
 
       this.totals[type] = sum
+    },
+    calcPercentages: function () {
+      let self = this
+      this.allItems.exp.forEach(function(curr){
+        curr.calcPerc(self.totals.inc)
+      })
     }
   }
 }
