@@ -15,7 +15,7 @@ import formatNum from '@/mixins/formatNumber'
 
 export default {
   name: 'Totals',
-  mixins: [ formatNum ],  
+  mixins: [ formatNum ],
   components: {
     BudgetTotals
   },
@@ -37,7 +37,6 @@ export default {
     },
     getBudget: function () {
       let type = this.budget > 0 ? 'inc' : 'exp'
-      
       let res = this.formatNumber(this.budget, type)
 
       return res

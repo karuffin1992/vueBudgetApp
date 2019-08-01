@@ -131,6 +131,10 @@ body {
   color: $red !important;
 }
 
+.cyan {
+  color: $cyan !important;
+}
+
 .red-focus:focus {
   border: 1px solid $red !important;
 }

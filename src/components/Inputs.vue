@@ -5,9 +5,21 @@
         <option value="inc">+</option>
         <option value="exp">-</option>
       </select>
-      <input v-model="description" type="text" class="add__description" placeholder="Add description">
-      <input v-model="value" type="number" class="add__value" placeholder="Value">
-      <button @click="addItem" class="add__btn"><i class="ion-ios-checkmark-outline"></i></button>
+      <input 
+        v-model="description"
+        type="text"
+        class="add__description"
+        v-bind:class="getStylesHover"
+        placeholder="Add description"
+      >
+      <input 
+        v-model="value"
+        type="number"
+        class="add__value"
+        v-bind:class="getStylesHover"
+        placeholder="Value"
+      >
+      <button @click="addItem" class="add__btn" v-bind:class="getStylesBtn"><i class="ion-ios-checkmark-outline"></i></button>
     </div>
   </div>
 </template>
@@ -31,6 +43,20 @@ export default {
       ddType: 'inc',
       description: '',
       value: ''
+    }
+  },
+  computed: {
+    getStylesBtn: function () {
+      return {
+        cyanBtn: this.ddType === 'inc',
+        redBtn: this.ddType === 'exp'
+      }
+    },
+    getStylesHover: function () {
+      return {
+        cyanHover: this.ddType === 'inc',
+        redHover: this.ddType === 'exp'
+      }
     }
   },
   methods: {
@@ -68,6 +94,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.cyanBtn {
+  color: $cyan;
+}
+
+.cyanHover {
+  outline: none;
+  border: 1px solid $cyan !important;
+}
+
+.redBtn {
+  color: $red;
+}
+
+.redHover {
+  outline: none;
+  border: 1px solid $red !important;
+}
+
 .add {
   padding: 14px;
   border-bottom: 1px solid $lightGrey;
@@ -116,26 +160,15 @@ export default {
   font-size: 35px;
   background: none;
   border: none;
-  color: $cyan;
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
   line-height: 1.1;
   margin-left: 10px;
+  outline: none;
 }
 
 .add__btn:active {
   transform: translateY(2px);
-}
-
-.add__type:focus,
-.add__description:focus,
-.add__value:focus {
-  outline: none;
-  border: 1px solid $cyan;
-}
-
-.add__btn:focus {
-  outline: none;
 }
 </style>
