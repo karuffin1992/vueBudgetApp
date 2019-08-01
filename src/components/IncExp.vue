@@ -4,9 +4,11 @@
     <div class="income__list">
       <IncExpRows v-for="item in items"
         :key="item.id"
+        :id="item.id"
         :value="item.value"
         :description="item.description"
         :rowType="rowType"
+        @interface="removeItem"
       />
     </div>
   </div>
@@ -16,10 +18,12 @@
     <div class="expenses__list">
       <IncExpRows v-for="item in items"
         :key="item.id"
+        :id="item.id"
         :value="item.value"
         :description="item.description"
         :percentage="item.percentage"
         :rowType="rowType"
+        @interface="removeItem"
       />
     </div>
   </div>
@@ -36,6 +40,12 @@ export default {
   props: {
     items: Array,
     rowType: String
+  },
+  methods: {
+    removeItem: function (event) {
+      this.items.splice(event, 1)
+      this.$emit('interface', this.items)
+    }
   }
 }
 </script>

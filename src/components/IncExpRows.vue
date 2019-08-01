@@ -5,7 +5,7 @@
       <div class="item__value">{{ formatNumber(value, rowType) }}</div>
       <div v-if="rowType === 'exp'" class="item__percentage">{{ getPercentage(percentage) }}</div>
       <div class="item__delete">
-        <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+        <button  @click="removeItem" class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
       </div>
     </div>
   </div>
@@ -19,10 +19,16 @@ export default {
   name: 'IncExpRows',
   mixins: [ formatNum, getPerc ],
   props: {
+    id: Number,
     value: Number,
     description: String,
     rowType: String,
     percentage: Number
+  },
+  methods: {
+    removeItem: function (event) {
+      this.$emit('interface', this.id)
+    }
   }
 }
 </script>

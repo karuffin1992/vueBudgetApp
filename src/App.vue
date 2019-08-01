@@ -14,8 +14,16 @@
         @interface="addItem"
       />
       <div class="container clearfix">
-        <IncExp rowType="inc" :items="allItems['inc']"/>
-        <IncExp rowType="exp" :items="allItems['exp']"/>
+        <IncExp
+          rowType="inc"
+          :items="allItems['inc']"
+          @interface="deleteItem" 
+        />
+        <IncExp
+          rowType="exp"
+          :items="allItems['exp']"
+          @interface="deleteItem"
+        />
       </div>
     </div>
   </div>
@@ -51,6 +59,12 @@ export default {
   },
   methods: {
     addItem: function (event) {
+      this.runUpdate()
+    },
+    deleteItem: function (event) {
+      this.runUpdate()
+    },
+    runUpdate: function () {
       this.getTotals()
       this.calcPercentages()
     },
@@ -79,7 +93,7 @@ export default {
     },
     calcPercentages: function () {
       let self = this
-      this.allItems.exp.forEach(function(curr){
+      this.allItems.exp.forEach(function (curr) {
         curr.calcPerc(self.totals.inc)
       })
     }
